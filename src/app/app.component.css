@@ -1,0 +1,57 @@
+.example-container {
+  height: 400px;
+  width: auto;
+  overflow: auto;
+}
+
+
+table {
+  width: 100%;
+  position: relative;
+  border-collapse: collapse;
+}
+
+
+thead th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgb(10, 102, 145);
+  color: #FFF;
+  text-align: center;
+}
+
+thead th:first-child {
+  left: 0;
+  z-index: 1;
+}
+
+tbody th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  left: 0;
+  background: #FFF;
+  border-right: 1px solid #CCC;
+}
+
+td {
+  text-align: center;
+}
+
+td, th {
+  width: 15%;
+}
+.example-button-container {
+  display: flex;
+  justify-content: end;
+  width: 120px;
+}
+
+.cc{
+  color: #1976d2;
+}
+
+.example-form-field {
+  width: 100px;
+}

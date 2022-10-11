@@ -1,0 +1,177 @@
+<div class="container">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card">
+          <div class="card-header card-header-success card-header-icon">
+            <div class="">
+              <i class="fas fa-basketball-ball"></i>
+            </div>
+            <h4 class="card-title mb-4">Gestión de Estudiantes</h4>
+            <div class="row">
+              <div class="col-6">
+
+              </div>
+              <div class="col-6">
+
+
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+
+            <div class="card" style="width: 20rem;">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Parámetros de busqueda</h5>
+                <p class="card-text">
+                  <button class="btn btn-info float-left" (click)="consultar(nombreBuscar)">
+                    Consultar
+                  </button>
+                  <button class="btn btn-info float-right" (click)="limpiar()">
+                    Limpiar
+                  </button>
+                </p>
+                <br>
+                <label for="buscar">Nombre</label>
+                <input type="text" [(ngModel)]="nombreBuscar" id="buscar" placeholder="Ingresar nombre a buscar.">
+              </div>
+            </div>
+
+            <h5 class="card-title">Lista de usuarios</h5>
+
+            <!--button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Crear
+            </button-->
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <thead class="thead-light">
+                  <tr>
+                    <th class="font-weight-bold text-center">ID</th>
+                    <th class="font-weight-bold text-center">Nombre</th>
+                    <th class="font-weight-bold text-center">Rol</th>
+                    <th class="font-weight-bold text-center">Activo</th>
+                    <th class="font-weight-bold text-center">Opciones</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="estudiantes.length > 0">
+                  <tr *ngFor="let item of estudiantes">
+                    <td>{{ item.idEst }}</td>
+                    <td (click)="findName(item.nombre)">{{ item.nombre }}</td>
+                    <td>{{ item.rol == 'P' ? 'Profesor' : 'Estudiante' }}</td>
+                    <td>{{ item.activo == 'S' ? 'Activo' :'Inactivado' }}</td>
+                    <td class="td-actions text-center">
+                      <button
+                        mat-raised-button
+                        matTooltip="Editar"
+                        matTooltipPosition="above"
+                        type="button"
+                        class="btn btn-warning btn-round btn-fab mr-2"
+                        (click)="onEdit(item.idEst,item.nombre,item.rol,item.activo)"
+                      >
+                        <span class="btn-label">
+                          <i class="material-icons">Ver</i>
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+              <div class="card">
+                <h5 class="card-title">Información del usuario</h5>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-primary" (click)="guardar(id,nombreu,rolselect,si,no)">Crear-guardar</button>
+                  <button type="button" class="btn btn-secondary" (click)="actualizar(id,nombreu,rolselect,si,no)">Editar</button>
+                  <button type="button" class="btn btn-danger" (click)="eliminar(id)">Eliminar</button>
+                </div>
+
+                <div class="col">
+
+                    <br>
+
+                    <div class="form-group row">
+                      <label for="id" class="col-sm-2 col-form-label">Id</label>
+                      <div class="col-sm-10">
+                        <input type="number" [(ngModel)]="id" class="form-control col-md-6" id="id" placeholder="Id" readonly=true>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+                      <div class="col-sm-10">
+                        <input type="text" [(ngModel)]="nombreu" class="form-control col-md-6" id="nombres" placeholder="Nombre" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="activo" class="col-sm-2 col-form-label">Rol</label>
+                      {{rolselect}}
+                      <select id="miselect" class="form-control col-md-4" name="miselect" [(ngModel)]="rolselect" required=true>
+                        <option selected>Seleccione</option>
+                        <option [value]="item.idRol" *ngFor="let item of roles">{{item.nombre}}</option>
+                      </select>
+                    </div>
+
+                    <fieldset class="form-group">
+                      <div class="row">
+                        <legend class="col-form-label col-sm-2 pt-0">Activo</legend>
+
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="si" name="activo" id="si1" [value]="1" >
+                            <label class="form-check-label" for="exampleRadios1">
+                              Si
+                            </label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="si" name="activo" id="no2" [value]="2">
+                            <label class="form-check-label" for="exampleRadios2">
+                              No
+                            </label>
+                          </div>
+
+                      </div>
+                    </fieldset>
+
+                </div>
+              </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+<!--modal crear usuario-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Creación Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--prueba de componente -->
+<div>
+
+  <router-outlet></router-outlet>
+</div>
