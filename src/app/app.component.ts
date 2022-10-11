@@ -110,13 +110,13 @@ export class AppComponent {
 
     alert("ee: " + rol);
     console.log(this.rolselect);
-    this.service.insertarUsuario(1,this.nombreu,rol,sii).subscribe((data) => {
+    this.service.insertarEstudiante(1,this.nombreu,rol,sii).subscribe((data) => {
       //this.getUsers2();
       this.getListEstudiantes();
       this.nombreu = "";
     },
     (data) =>{
-      window.location.reload();
+     // window.location.reload();
     },
     );
 
@@ -125,7 +125,7 @@ export class AppComponent {
   actualizar(id:any,nom:string,rol:any,sii:any,activo:any){
     alert("update: " +id+ " -- " +this.si+"--"+sii+ " -- " + this.nombreu + " rol:  " + rol);
     if(sii != undefined){
-      this.service.actualizarUsuario(id,this.nombreu,rol,sii).subscribe((data) => {
+      this.service.actuallizarEstudiante(id,this.nombreu,rol,sii).subscribe((data) => {
         //this.getUsers2();
         this.getListEstudiantes();
       },

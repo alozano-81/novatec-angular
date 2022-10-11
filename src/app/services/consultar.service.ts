@@ -63,6 +63,38 @@ export class ConsultarService {
   }
   //*Fin insertar en necesidad */
 
+   //*Insertar en Estudiante */
+   insertarEstudiante(
+    id: any,
+    nombre: any,
+    rolid: any,
+    activo: any
+  ) {
+    let prodId = { id: id };
+    let prodNombre = { nombre: nombre };
+
+    let itemToCreate = Object.assign(prodId,prodNombre);
+    let url = `${this.environment}${this.pathEst}/crear/${id}/${nombre}/${rolid}/${activo}`;
+    return this.http.post(url, itemToCreate);
+  }
+  //*Fin insertar en necesidad */
+
+  //Actualizar estudiante
+  actuallizarEstudiante(
+    id: any,
+    nombre: any,
+    rolid: any,
+    activo: any
+  ) {
+    let prodId = { id: id };
+    let prodNombre = { nombre: nombre };
+
+    let itemToCreate = Object.assign(prodId,prodNombre);
+    let url = `${this.environment}${this.pathEst}/update/${id}/${nombre}/${rolid}/${activo}`;
+    return this.http.post(url, itemToCreate);
+  }
+  //fin Actualizar estudiante
+
   //*actualizarUser en usuario */
   actualizarUsuario(
     id: any,
